@@ -14,3 +14,4 @@
 		Ska komma på lösning! Första gången jag stöter på. Brukar inte returnera char* men nu, mellan c# och c++ är nog det bästa sättet.
 	* Ingen snygg lösning att man måste spara converted image separat men snabblösning!!!
 	* Ska försöka ladda in image till c#. Då skulle man ju i princip kunna visa eller redigera bilden i c#.
+	* !!! Kolla så att bilden ligger i rätt mapp !!!
