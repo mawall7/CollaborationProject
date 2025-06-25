@@ -66,7 +66,7 @@ class Program {
 	[DllImport("libTest.dll", CallingConvention = CallingConvention.Cdecl)]
 	public static extern void SaveImageJPGConverted([MarshalAs(UnmanagedType.LPStr)]String path, int quality);
 /////////////////////////////////////////////////////////////////////////
-    //  dummy comment
+    //dummy comment
 	public static void Main () {
 /*		
 		int first = 10, second = 5;
@@ -83,13 +83,13 @@ class Program {
 			//char[] text = "Hello there!";
 			Print("Hello there!");
 
-			IntPtr MsgP = GetMessage();
-			string MsgStr = Marshal.PtrToStringAnsi(MsgP);
-			Console.WriteLine("Message = \"{0}\"", MsgStr);
-		}
+            IntPtr MsgP = GetMessage();
+            string MsgStr = Marshal.PtrToStringAnsi(MsgP);
+            Console.WriteLine("Message = \"{0}\"", MsgStr);
+        }
 
-// stb_image ////////////////////////////////////////////////////////////
-		LoadImage("sky.png", false); // LoadImage(path, flip)
+        // stb_image ////////////////////////////////////////////////////////////
+        LoadImage("sky.png", false); // LoadImage(path, flip)
 		int width = GetImageWidth();
 		int height = GetImageHeight();
 		int channels = GetImageChannels();
