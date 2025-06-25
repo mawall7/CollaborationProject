@@ -4,12 +4,6 @@
 #include "imgConv.cpp"
 
 imgcon::Image img, img_bak;
-struct File {
-	std::string name;
-	std::string format;
-	std::string path;
-};
-File g_file;
 
 void println (char* text) {
 	std::cout << text << '\n'; 
