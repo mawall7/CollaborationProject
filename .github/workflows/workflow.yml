@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
@@ -29,5 +31,10 @@ jobs:
           git add Collaboration\libTest.dll
           git commit -m "Auto-build DLL on PR"
           git push
+        env:  
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+
+         
 
 
