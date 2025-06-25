@@ -8,17 +8,17 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Compile DLL
         shell: powershell
         run: |
-          # Compile test.cpp to libTest.dll in Collaborations folder
+          # Compile test.cpp to libTest.dll in Collaboration folder
           g++ -shared -o Collaboration\libTest.dll CPPProj\test.cpp
 
       - name: Commit and push DLL
@@ -27,7 +27,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add Collaboration\libTest.dll
-          git commit -m "Auto-build DLL on PR"
+          git commit -m "Auto-build DLL on PR" || exit 0
           git push
-
-
+        env:  
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
