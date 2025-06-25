@@ -1,9 +1,9 @@
 name: Build DLL on Pull Request
 
 on:
-  pull_request:
+  push:
     branches:
-      - main    # or your default branch, adjust as needed
+      - main   
 
 jobs:
   build:
