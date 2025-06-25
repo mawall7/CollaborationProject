@@ -66,7 +66,7 @@ class Program {
 	[DllImport("libTest.dll", CallingConvention = CallingConvention.Cdecl)]
 	public static extern void SaveImageJPGConverted([MarshalAs(UnmanagedType.LPStr)]String path, int quality);
 /////////////////////////////////////////////////////////////////////////
-    //dummy comment
+    //  dummy comment
 	public static void Main () {
 /*		
 		int first = 10, second = 5;
