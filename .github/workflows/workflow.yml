@@ -1,0 +1,23 @@
+# .github/workflows/build-dll-on-pr.yml
+name: Build DLL on PR
+
+on:
+  pull_request:
+
+jobs:
+  build-dll:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+
+    - name: Compile C++ file to DLL
+      run: g++ -shared -o CollaborationProj/libTest.dll CPPProj/test.cpp
+
+    
