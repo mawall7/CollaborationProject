@@ -1,5 +1,15 @@
 
 #include <iostream>
+#include <string>
+#include "imgConv.cpp"
+
+imgcon::Image img, img_bak;
+struct File {
+	std::string name;
+	std::string format;
+	std::string path;
+};
+File g_file;
 
 void println (char* text) {
 	std::cout << text << '\n'; 
@@ -59,6 +69,11 @@ extern "C" {
 		println(text);
 	}
 
+	char* GetMessage () {
+		char* msg = "Hello c# from c++!";
+		return msg;
+	}
+
 	void PrintOS () {
 		printOS();
 	}
@@ -74,6 +89,61 @@ extern "C" {
 	int Multiply (int a, int b) {
 		return a * b;
 	}
+
+// stb_image ////////////////////////////////////////////////////////////
+	void LoadImage (char* path, bool flip) {
+		imgcon::image_load (img, path, flip);
+	}
+
+	void LoadImageInfo (char* path) {
+		image_info (img, path);
+	}
+
+	void FreeImage () {
+		imgcon::image_free(img);
+	}
+
+	int GetImageWidth () { return img.width; }
+
+	int GetImageHeight () { return img.height; }
+
+	int GetImageChannels () { return img.channels; }
+
+	int GetImageSize () { return img.size; }
+
+	void SaveImagePNG (char* path) {
+		imgcon::image_save_png (img, path);
+	}
+
+	void SaveImageJPG (char* path, int quality) {
+		imgcon::image_save_jpg (img, path, quality);
+	}
+
+	void SaveImageBMP (char* path) {
+		imgcon::image_save_bmp (img, path);
+	}
+
+	void SaveImageTGA (char* path) {
+		imgcon::image_save_tga (img, path);
+	}
+
+
+	void ConvertToGray () {
+		imgcon::image_to_gray (img, img_bak);
+	}
+
+	void ConvertToSepia () {
+		imgcon::image_to_sepia (img, img_bak);
+	}
+
+	void FreeImageConverted () {
+		imgcon::image_free(img_bak);
+	}
+
+	void SaveImageJPGConverted (char* path, int quality) {
+		imgcon::image_save_jpg (img_bak, path, quality);
+	}
+////////////////////////////////////////////////////////////////////////
 
 }
 
