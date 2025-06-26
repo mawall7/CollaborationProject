@@ -3,7 +3,7 @@ name: Build DLL on Pull Request
 on:
   push:
     branches:
-      - master  
+      - master
 
 jobs:
   build:
@@ -16,22 +16,29 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Check for g++
+        shell: pwsh
         run: g++ --version
-        shell: powershell
 
       - name: Compile DLL
-        shell: powershell
+        shell: pwsh
         run: |
-          # Compile test.cpp to libTest.dll in Collaboration folder
+          # Compile test.cpp to libTest.dll in CollaborationProject folder
           g++ -shared -o CollaborationProject\libTest.dll CPPProj\test.cpp
 
       - name: Commit and push DLL
-        shell: powershell
+        shell: pwsh
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add CollaborationProject\libTest.dll
-          git commit -m "Auto-build DLL on PR" | exit 0
+
+          try {
+            git commit -m "Auto-build DLL on PR"
+          } catch {
+            Write-Host "No changes to commit."
+            exit 0
+          }
+
           git push
-        env:  
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
