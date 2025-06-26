@@ -3,7 +3,7 @@ name: Build DLL on Pull Request
 on:
   push:
     branches:
-      - main   
+      - master  
 
 jobs:
   build:
