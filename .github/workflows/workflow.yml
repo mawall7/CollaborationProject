@@ -15,6 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Check for g++
+        run: g++ --version
+        shell: powershell
+
       - name: Compile DLL
         shell: powershell
         run: |
