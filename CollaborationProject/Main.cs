@@ -33,6 +33,11 @@ namespace MWFTestApplication {
 				// Måste stå innan man laddar
 			//StbImage.Info("sky.png", ref Width, ref Height, ref Channels);
 				// Ska skriva funktion till så det ser likadant ut som när man laddar bild.
+
+			//Image1.WritePNG("sky2.png");
+			//Image1.WriteJPG("sky.jpg", 70);
+			//Image1.WriteBMP("sky.bmp");
+			//Image1.WriteTGA("sky.tga");
 			/////////////////////////////////////////////////////////////////////////
 
 			try {
