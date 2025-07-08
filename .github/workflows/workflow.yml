@@ -1,0 +1,44 @@
+name: Build DLL on Pull Request
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for g++
+        shell: pwsh
+        run: g++ --version
+
+      - name: Compile DLL
+        shell: pwsh
+        run: |
+          # Compile test.cpp to libTest.dll in CollaborationProject folder
+          g++ -shared -o CollaborationProject\libTest.dll CPPProj\test.cpp
+
+      - name: Commit and push DLL
+        shell: pwsh
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add CollaborationProject\libTest.dll
+
+          try {
+            git commit -m "Auto-build DLL on PR"
+          } catch {
+            Write-Host "No changes to commit."
+            exit 0
+          }
+
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
