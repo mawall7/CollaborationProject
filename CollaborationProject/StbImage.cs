@@ -17,6 +17,18 @@ class StbImage {
 //	[DllImport("libStbImageCSharp.so", CallingConvention = CallingConvention.Cdecl)]
 //	public static extern void Image_Free ([MarshalAs(UnmanagedType.LPArray)] byte[] Data);
 
+	[DllImport("libStbImageCSharp.dll", CallingConvention = CallingConvention.Cdecl)]
+	public static extern void Write_PNG ([MarshalAs(UnmanagedType.LPStr)]String Path, int Width, int Height, int Channels, [MarshalAs(UnmanagedType.LPArray)] byte[] Data);
+
+	[DllImport("libStbImageCSharp.dll", CallingConvention = CallingConvention.Cdecl)]
+	public static extern void Write_JPG ([MarshalAs(UnmanagedType.LPStr)]String Path, int Width, int Height, int Channels, [MarshalAs(UnmanagedType.LPArray)] byte[] Data, int Quality);
+
+	[DllImport("libStbImageCSharp.dll", CallingConvention = CallingConvention.Cdecl)]
+	public static extern void Write_BMP ([MarshalAs(UnmanagedType.LPStr)]String Path, int Width, int Height, int Channels, [MarshalAs(UnmanagedType.LPArray)] byte[] Data);
+
+	[DllImport("libStbImageCSharp.dll", CallingConvention = CallingConvention.Cdecl)]
+	public static extern void Write_TGA ([MarshalAs(UnmanagedType.LPStr)]String Path, int Width, int Height, int Channels, [MarshalAs(UnmanagedType.LPArray)] byte[] Data);
+
 	public struct Image {
 		public int Width;
 		public int Height;
@@ -30,12 +42,28 @@ class StbImage {
 			Channels = Value;
 		}*/
 
-		public void LoadFromFile(string path) {
-			IntPtr DataPtr = StbImage.Load(path, ref Width, ref Height, ref Channels);
+		public void LoadFromFile(string Path) {
+			IntPtr DataPtr = StbImage.Load(Path, ref Width, ref Height, ref Channels);
 			Size = Width * Height * Channels;
 			//Console.WriteLine("{0} {1} {2} {3}", Width, Height, Channels, Size);
 			Data = new byte[Size];
 			Marshal.Copy(DataPtr, Data, 0, Size);
+		}
+
+		public void WritePNG (string Path) {
+			Write_PNG(Path, Width, Height, Channels, Data);
+		}
+
+		public void WriteJPG (string Path, int Quality) {
+			Write_JPG(Path, Width, Height, Channels, Data, Quality);
+		}
+
+		public void WriteBMP (string Path) {
+			Write_BMP(Path, Width, Height, Channels, Data);
+		}
+
+		public void WriteTGA (string Path) {
+			Write_TGA(Path, Width, Height, Channels, Data);
 		}
 
 /*		private static byte[] Convert16BitGrayScaleToRgb48 (byte[] inBuffer, int width, int height) {
@@ -67,7 +95,7 @@ class StbImage {
 		}*/
 
 		//private static byte[] Convert8BitRgbaToRgb48 (byte[] inBuffer, int width, int height) {
-		public byte[] Convert8BitRgbaToRgb24 () {
+		public byte[] Convert8BitRgbaToRgb8Bit () {
 			int inBytesPerPixel = 4;
 			//int outBytesPerPixel = 6; // ToRgb48
 			int outBytesPerPixel = 3;
