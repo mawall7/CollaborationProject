@@ -29,7 +29,7 @@ namespace MWFTestApplication {
 			Image1.LoadFromFile("sky.png");
 
 			// Andra Funktioner
-			//StbImage.Set_Flip_Verticaly_On_Load(false);
+			//StbImage.Set_Flip_Verticaly_On_Load(true);
 				// Måste stå innan man laddar
 			//StbImage.Info("sky.png", ref Width, ref Height, ref Channels);
 				// Ska skriva funktion till så det ser likadant ut som när man laddar bild.
