@@ -1,5 +1,5 @@
 ----- NY UPDATE ----- 8 juli 2025
-Dom nya (och enda filerna du behöver + stbi_image.h) är
+Dom nya (och enda filerna du behöver) är
 StbImageCSharp.cpp: (eller egentligen libStbImageCSharp.dll)
 	c filen som laddar in stbi_image och som blir libStbImageCSharp.dll(eller .so[linux]) och laddas in i ...
 StbImage.cs:
