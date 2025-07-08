@@ -23,7 +23,7 @@ jobs:
         shell: pwsh
         run: |
           # Compile test.cpp to libTest.dll in CollaborationProject folder
-          g++ -fPIC -shared -o CollaborationProject\libStbImageCSharp.dll CPPProj\StbImageCSharp.cpp
+          g++ -shared -o CollaborationProject\libStbImageCSharp.dll CPPProj\StbImageCSharp.cpp
 
       - name: Commit and push DLL
         shell: pwsh
