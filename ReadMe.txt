@@ -1,7 +1,7 @@
 ----- NY UPDATE ----- 8 juli 2025
 Dom nya (och enda filerna du behöver) är
 StbImageCSharp.cpp: (eller egentligen libStbImageCSharp.dll)
-	c filen som laddar in stbi_image och som blir libStbImageCSharp.dll(eller .so[linux]) och laddas in i ...
+	c++ filen som stbi_image ligger inbakad i och som blir libStbImageCSharp.dll(eller .so[linux]) och laddas in i ...
 StbImage.cs:
 	Här laddas dll:en och här ligger Image struct, och viktiga funktioner. Det är här all egentlig kod ligger.
 Main_Example_1.cs:
